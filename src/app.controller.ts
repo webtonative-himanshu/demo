@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -23,6 +23,13 @@ export class AppController {
 
   @Get('book')
   book(@Query() body: Record<string, string>) {
+    return {
+      message: `Slot for ${body.day} , ${body.time} is booked successfully`,
+    };
+  }
+
+  @Post('book2')
+  boo2k(@Body() body: Record<string, string>) {
     return {
       message: `Slot for ${body.day} , ${body.time} is booked successfully`,
     };
