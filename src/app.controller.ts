@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Post, Query } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
@@ -21,6 +21,7 @@ export class AppController {
     };
   }
 
+  @HttpCode(200)
   @Get('book')
   book(@Query() body: Record<string, string>) {
     return {
