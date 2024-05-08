@@ -12,7 +12,11 @@ const SUCCESS_RATE = 90; // Success rate in percentage
 
 @Injectable()
 export class AppService {
-  getSlots() {
+  getDays() {
+    return Object.keys(slots);
+  }
+
+  getSlots(day: string) {
     hits++;
     if (hits > MAX) {
       hits = 0;
@@ -21,7 +25,7 @@ export class AppService {
     if (percentage >= SUCCESS_RATE) {
       throw new BadRequestException();
     }
-    return slots;
+    return slots[day];
   }
 
   getPdf({ type, userId }: Record<string, string>) {
