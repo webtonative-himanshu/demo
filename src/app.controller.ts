@@ -39,8 +39,6 @@ export class AppController {
   @Get('pdf')
   getPdf(@Query() query: Record<string, string>) {
     const pdf = this.appService.getPdf(query);
-    return {
-      file: pdf,
-    };
+    return pdf;
   }
 }
