@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nest-docker
+    environment:
+      - PORT=8080
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./src:/app/src
+
+  tunnel:
+    container_name: cloudflared-tunnel
+    image: cloudflare/cloudflared
+    restart: unless-stopped
+    depends_on:
+      - app
+    environment:
+      - TUNNEL_TOKEN=eyJhIjoiMTkzOTcxMDU0NzgxYzk3YjlmYWFiZDQyODVjYjE5MWQiLCJ0IjoiMzk4NmRiYjktNDQ2Yy00NWM3LWE0MWUtMDQ2Y2ZjY2Y1OTMyIiwicyI6Ik56a3hNbUUyTVRFdE5URTRaUzAwTWpSakxUZzJaamN0TTJZNE5UVmhNVFV4TVdabSJ9
+    command: tunnel --no-autoupdate run
