@@ -41,4 +41,9 @@ export class AppController {
     const pdf = this.appService.getPdf(query);
     return pdf;
   }
+
+  @Post("/webhook") 
+  webhook(@Body() body) {
+    console.log(body)
+  }
 }
