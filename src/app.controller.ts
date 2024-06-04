@@ -42,8 +42,8 @@ export class AppController {
     return pdf;
   }
 
-  @Post("/webhook") 
+  @Post('/webhook')
   webhook(@Body() body) {
-    console.log(body)
+    console.log(body);
   }
 }
